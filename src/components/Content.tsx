@@ -35,8 +35,9 @@ function Content({token}:any) {
     const body = { title: data };
     axios
       .post(`${url}/category`, body, config)
-      .then((response) => console.log(response.data) //setCategories([...categories, response.data])
+      .then((response) => setCategories([...categories, response.data])
       );
+      
   };
 
   interface Todos {
