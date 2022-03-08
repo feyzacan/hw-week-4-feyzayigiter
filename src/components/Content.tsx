@@ -17,17 +17,15 @@ function Content({token}:any) {
   };
 
   useEffect(() => {
-    console.log(token)
-    getCategories(); //test için (500 error)
-    //getTodos();
+    getCategories(); 
   }, []);
 
   const getCategories = () => {
     axios
       .get(`${url}/category`, config)
       .then((response) => setCategories(response.data),
-      ).catch((error) => { //hata mesajını eklemek için ekledim https://stackoverflow.com/questions/50950011/axios-post-request-fails-with-error-status-code-500-internal-server-error
-          console.error(error.response);     // NOTE - use "error.response.data` (not "error")
+      ).catch((error) => {
+          console.error(error.response);
       })
   };
 
@@ -57,13 +55,6 @@ function Content({token}:any) {
     categoryId: number
     color: string
   }
-
-/*
-  // useEffect(() => { //cookie içerisinden token alma
-  //   const cookie = getCookie('token')
-  //   setToken(cookie)
-    
-  // }, []) */
   
   const handleTodos = (newTodo: any, selectedCategory: any, selectedStatus: any) => {
     setTodos((prev: any) => ([...prev, { title: newTodo, categoryId: selectedCategory, statusId: selectedStatus }]))

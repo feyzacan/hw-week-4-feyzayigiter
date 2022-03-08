@@ -4,12 +4,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Status from './Status';
 import CategoryList from './CategoryList';
-//import category from '../services/odevserver/controllers/category';
 
-function Category({ categories, status, handleStatus, setCategories, addCategory}: any) {
+function Category({ categories, status, handleStatus, addCategory}: any) {
 
   const [newCategory, setNewCategory] = useState("")
 
