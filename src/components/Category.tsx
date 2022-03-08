@@ -4,16 +4,27 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Status from './Status';
 import CategoryList from './CategoryList';
+//import category from '../services/odevserver/controllers/category';
 
-function Category({ categories, handleCategories, status, handleStatus }: any) {
+function Category({ categories, status, handleStatus, setCategories, addCategory}: any) {
 
   const [newCategory, setNewCategory] = useState("")
 
-  const handleNewCategory = (event: any) => {
-    setNewCategory(event.currentTarget.value)
+
+   const handleNewCategory = (event: any) => {
+     setNewCategory(event.currentTarget.value)
+   }
+
+  const handleCategories = (event:any) => {
+    event.preventDefault()
+    if (newCategory) {
+      
+      addCategory(newCategory)
+      setNewCategory("")
+    }
   }
 
   const style = {
@@ -47,7 +58,7 @@ function Category({ categories, handleCategories, status, handleStatus }: any) {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <TextField onChange={handleNewCategory} sx={{ m: 1, width: '20ch' }} id="outlined-basic" label="Outlined" variant="outlined" />
-            <Button onClick={() => { handleCategories(newCategory) }} sx={{ m: 1, width: '20ch' }} variant="contained">Add Category</Button>
+            <Button onClick={ handleCategories } sx={{ m: 1, width: '20ch' }} variant="contained">Add Category</Button>
             <CategoryList categories={categories} />
             <Status handleStatus={handleStatus} status={status} />
           </Typography>

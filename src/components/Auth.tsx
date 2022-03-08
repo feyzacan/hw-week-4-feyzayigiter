@@ -33,7 +33,6 @@ function Auth({ setIsLogged }: any) {
       .then((response) => {
         document.cookie = `token=${response.data.token}`
         setIsLogged(true)
-
       })
   }
 
